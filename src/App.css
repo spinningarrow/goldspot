@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+body {
+	margin: 2rem auto;
+	max-width: 600px;
+}
+
+.song-list ul {
+	list-style: none;
+	padding: 0;
+}
+
+.song-item {
+	margin-top: 0.5rem;
+}
+
+.song-item img {
+	display: inline-block;
+	margin-right: 0.5rem;
+	vertical-align: middle;
+	width: 32px;
+}
+
+.song-item span {
+	display: inline-block;
+	vertical-align: middle;
+}
