@@ -4,20 +4,27 @@ import './App.css';
 const mapData = data => data.items.map(({
 	played_at: playedAt,
 	added_at: addedAt,
-	track: { id, name: title, album: { images }, artists }
+	track: {
+		id,
+		name: title,
+		album: { images },
+		external_urls: { spotify },
+		artists
+	}
 }) => ({
 	addedAt,
 	albumArt: images[1].url,
 	title,
 	artist: artists[0].name,
 	id,
-	playedAt
+	playedAt,
+	url: spotify
 }))
 
-const SongItem = ({ albumArt, title }) =>
+const SongItem = ({ albumArt, title, url }) =>
 	<li className="song-item">
-		<img src={albumArt} alt={title} />
-		<span>{title}</span>
+		<img src={albumArt} />
+		<a href={url}>{title}</a>
 	</li>
 
 const SongList = ({ heading, children }) =>
@@ -49,13 +56,13 @@ class App extends Component {
 	}
 
 	render() {
-		return <div>
+		return <div className="app">
 			<SongList heading="Recently Added">
-				{this.state.recentlyAdded.map(({ albumArt, title, id }) => <SongItem key={id} albumArt={albumArt} title={title} />)}
+				{this.state.recentlyAdded.map(({ albumArt, title, id, url }) => <SongItem key={id} albumArt={albumArt} title={title} url={url} />)}
 			</SongList>
 
 			<SongList heading="Recently Played">
-				{this.state.recentlyPlayed.map(({ albumArt, title, id, playedAt }) => <SongItem key={id + playedAt } albumArt={albumArt} title={title} />)}
+				{this.state.recentlyPlayed.map(({ albumArt, title, id, url, playedAt }) => <SongItem key={id + playedAt } albumArt={albumArt} title={title} url={url} />)}
 			</SongList>
 		</div>
 	}
