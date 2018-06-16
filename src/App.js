@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 
 const mapData = data => data.items.map(({
 	played_at: playedAt,
