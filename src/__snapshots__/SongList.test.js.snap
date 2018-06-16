@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SongList renders a list of SongItems 1`] = `
+<div
+  className="song-list"
+>
+  <h1>
+    Some Songs
+  </h1>
+  <ul>
+    <SongItem
+      albumArt="art1.jpg"
+      title="The Best Song"
+      url="https://the/best/song"
+    />
+    <SongItem
+      albumArt="art2.jpg"
+      title="Song #2"
+      url="https://the/second/song"
+    />
+  </ul>
+</div>
+`;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SongItem displays the given details about the song item 1`] = `
+<li
+  className="song-item"
+>
+  <img
+    alt="Dans L'sang"
+    src="art.jpg"
+  />
+  <a
+    href="https://spotify/song"
+    target="_blank"
+  >
+    Dans L'sang
+  </a>
+</li>
+`;

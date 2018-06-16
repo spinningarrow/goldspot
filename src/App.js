@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+
+import Header from './Header'
+import SongList from './SongList'
 
 const mapData = data => data.items.map(({
 	played_at: playedAt,
@@ -19,23 +22,6 @@ const mapData = data => data.items.map(({
 	playedAt,
 	url: spotify
 }))
-
-const Header = () =>
-	<header>
-		<h1><span>Gold</span>spot</h1>
-	</header>
-
-const SongItem = ({ albumArt, title, url }) =>
-	<li className="song-item">
-		<img src={albumArt} alt={title} />
-		<a href={url} target="_blank">{title}</a>
-	</li>
-
-const SongList = ({ heading, children }) =>
-	<div className="song-list">
-		<h1>{heading}</h1>
-		<ul>{children}</ul>
-	</div>
 
 class App extends Component {
 	constructor() {
@@ -63,13 +49,19 @@ class App extends Component {
 		return <div className="app">
 			<Header />
 			<main>
-				<SongList heading="Recently Added">
-					{this.state.recentlyAdded.map(({ albumArt, title, id, url }) => <SongItem key={id} albumArt={albumArt} title={title} url={url} />)}
-				</SongList>
-
-				<SongList heading="Recently Played">
-					{this.state.recentlyPlayed.map(({ albumArt, title, id, url, playedAt }) => <SongItem key={id + playedAt } albumArt={albumArt} title={title} url={url} />)}
-				</SongList>
+				<SongList heading="Recently Added" items={this.state.recentlyAdded} />
+				<SongList heading="Recently Played" items={this.state.recentlyPlayed.map(({
+					albumArt,
+					title,
+					id,
+					url,
+					playedAt
+				}) => ({
+					id: id + playedAt,
+					albumArt,
+					title,
+					url,
+				}))} />
 			</main>
 		</div>
 	}

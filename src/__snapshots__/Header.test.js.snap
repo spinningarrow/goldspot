@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders a heading with the app name 1`] = `
+<header>
+  <h1>
+    <span>
+      Gold
+    </span>
+    spot
+  </h1>
+</header>
+`;
