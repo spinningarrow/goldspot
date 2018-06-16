@@ -28,7 +28,7 @@ const Header = () =>
 const SongItem = ({ albumArt, title, url }) =>
 	<li className="song-item">
 		<img src={albumArt} />
-		<a href={url}>{title}</a>
+		<a href={url} target="_blank">{title}</a>
 	</li>
 
 const SongList = ({ heading, children }) =>
