@@ -5,7 +5,7 @@ exports[`SongItem displays the given details about the song item 1`] = `
   className="song-item"
 >
   <img
-    alt="Dans L'sang"
+    alt="album art"
     src="art.jpg"
   />
   <a

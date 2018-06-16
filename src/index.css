@@ -63,6 +63,9 @@ main {
 
 .song-item img {
 	display: inline-block;
+	font-size: 8px;
+	height: 32px;
+	line-height: 1;
 	margin-right: 0.5rem;
 	vertical-align: middle;
 	width: 32px;
