@@ -21,6 +21,11 @@ const mapData = data => data.items.map(({
 	url: spotify
 }))
 
+const Header = () =>
+	<header>
+		<h1><span>Gold</span>spot</h1>
+	</header>
+
 const SongItem = ({ albumArt, title, url }) =>
 	<li className="song-item">
 		<img src={albumArt} />
@@ -57,13 +62,16 @@ class App extends Component {
 
 	render() {
 		return <div className="app">
-			<SongList heading="Recently Added">
-				{this.state.recentlyAdded.map(({ albumArt, title, id, url }) => <SongItem key={id} albumArt={albumArt} title={title} url={url} />)}
-			</SongList>
+			<Header />
+			<main>
+				<SongList heading="Recently Added">
+					{this.state.recentlyAdded.map(({ albumArt, title, id, url }) => <SongItem key={id} albumArt={albumArt} title={title} url={url} />)}
+				</SongList>
 
-			<SongList heading="Recently Played">
-				{this.state.recentlyPlayed.map(({ albumArt, title, id, url, playedAt }) => <SongItem key={id + playedAt } albumArt={albumArt} title={title} url={url} />)}
-			</SongList>
+				<SongList heading="Recently Played">
+					{this.state.recentlyPlayed.map(({ albumArt, title, id, url, playedAt }) => <SongItem key={id + playedAt } albumArt={albumArt} title={title} url={url} />)}
+				</SongList>
+			</main>
 		</div>
 	}
 }
