@@ -24,9 +24,7 @@ afterEach(() => {
 	window.fetch = originalFetch
 })
 
-describe('App', () => {
-	it('renders without crashing', () => {
-		const tree = renderer.create(<App />).toJSON()
-		expect(tree).toMatchSnapshot()
-	})
+test('it renders without crashing', () => {
+	const tree = renderer.create(<App />).toJSON()
+	expect(tree).toMatchSnapshot()
 })

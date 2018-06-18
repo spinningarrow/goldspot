@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header renders a heading with the app name 1`] = `
+exports[`it renders a heading with the app name 1`] = `
 <header>
   <h1>
     <span>

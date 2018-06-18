@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SongItem displays the given details about the song item 1`] = `
+exports[`it displays the given details about the song item 1`] = `
 <li
   className="song-item"
 >
