@@ -32,10 +32,6 @@ a {
 	text-decoration: none;
 }
 
-a:hover {
-	border-bottom: 1px solid hsl(0, 0%, 60%);
-}
-
 main {
 	display: flex;
 	padding-top: 2rem;
@@ -61,16 +57,13 @@ main > * {
 	white-space: nowrap;
 }
 
-.song-item:hover {
-	background-color: hsl(0, 0%, 98%);
-}
-
 .song-item img {
 	display: inline-block;
 	font-size: 8px;
 	height: 32px;
 	line-height: 1;
 	margin-right: 0.5rem;
+	opacity: 0.7;
 	vertical-align: middle;
 	width: 32px;
 }
@@ -81,6 +74,18 @@ main > * {
 
 .song-item .artist::before {
 	content: ' ';
+}
+
+.song-item:hover {
+	background-color: hsl(0, 0%, 98%);
+}
+
+.song-item:hover img {
+	opacity: 1;
+}
+
+.song-item .title:hover {
+	border-bottom: 1px solid hsl(0, 0%, 60%);
 }
 
 .multi-song-list-items {
@@ -108,6 +113,7 @@ main > * {
 
 .multi-song-list-items li::after {
 	content: '/';
+	display: inline-block;
 	color: hsl(0, 0%, 65%);
 	margin-left: 1rem;
 }
