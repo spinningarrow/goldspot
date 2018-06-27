@@ -1,7 +1,9 @@
 import React from 'react'
 
+const getDisplayName = component => component.displayName || component.name || 'Component'
+
 const withData = (WrappedComponent, transformData, ...urls) => {
-	return class extends React.Component {
+	class WithData extends React.Component {
 		constructor() {
 			super()
 
@@ -23,6 +25,10 @@ const withData = (WrappedComponent, transformData, ...urls) => {
 			return <WrappedComponent items={this.state.items} {...this.props} />
 		}
 	}
+
+	WithData.displayName = `WithData(${getDisplayName(WrappedComponent)})`
+
+	return WithData
 }
 
 export default withData
