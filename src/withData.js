@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { getSpotifyToken } from './utils'
+
 const getDisplayName = component => component.displayName || component.name || 'Component'
 
 const withData = (WrappedComponent, transformData, ...urls) => {
@@ -13,7 +15,12 @@ const withData = (WrappedComponent, transformData, ...urls) => {
 		}
 
 		async componentDidMount() {
-			const responses = await Promise.all(urls.map(url => fetch(url)))
+			const responses = await Promise.all(urls.map(url => fetch(url, {
+				headers: {
+					Authorization: `Bearer ${getSpotifyToken()}`
+				}
+			})))
+
 			const jsons = await Promise.all(responses.map(response => response.json()))
 
 			this.setState({
