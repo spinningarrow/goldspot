@@ -3,7 +3,7 @@ import React from 'react'
 import SongList from './SongList'
 
 const MultiSongList = ({ items: multiSongListData = {}, selectedSongList, handleSelection }) => {
-	if (!Object.keys(multiSongListData).length) return <div>No data yet</div>
+	if (!Object.keys(multiSongListData).length) return <div></div>
 	return <div className="multi-song-list">
 		<h1><ul className="multi-song-list-items">
 			{Object.keys(multiSongListData).map(key => {
