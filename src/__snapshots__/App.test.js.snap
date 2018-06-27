@@ -6,13 +6,11 @@ exports[`it renders without crashing 1`] = `
 >
   <Header />
   <main>
-    <SongList
+    <Component
       heading="Recently Added"
-      items={Array []}
     />
-    <SongList
+    <Component
       heading="Recently Played"
-      items={Array []}
     />
   </main>
 </div>
