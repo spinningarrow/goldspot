@@ -12,6 +12,10 @@ exports[`it renders without crashing 1`] = `
     <Component
       heading="Recently Played"
     />
+    <Component
+      handleSelection={[Function]}
+      selectedSongList="energize"
+    />
   </main>
 </div>
 `;

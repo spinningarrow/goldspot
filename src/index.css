@@ -41,7 +41,7 @@ main {
 	padding-top: 2rem;
 }
 
-.song-list {
+main > * {
 	flex: 0 0 45rem;
 	margin-right: 5rem;
 }
@@ -74,4 +74,37 @@ main {
 .song-item span {
 	display: inline-block;
 	vertical-align: middle;
+}
+
+.multi-song-list-items {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-transform: capitalize;
+	color: hsl(0, 0%, 65%);
+}
+
+.multi-song-list-items .selected {
+	color: initial;
+}
+
+.multi-song-list-items li {
+	display: inline-block;
+	margin-right: 1rem;
+	cursor: pointer;
+}
+
+.multi-song-list-items li:hover {
+	text-decoration: underline;
+}
+
+.multi-song-list-items li::after {
+	display: inline-block;
+	content: '/';
+	color: hsl(0, 0%, 65%);
+	margin-left: 1rem;
+}
+
+.multi-song-list-items li:last-child::after {
+	content: '';
 }
