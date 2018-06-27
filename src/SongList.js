@@ -1,7 +1,7 @@
 import React from 'react'
 import SongItem from './SongItem'
 
-export default ({ heading, items }) =>
+const SongList = ({ heading, items }) =>
 	<div className="song-list">
 		<h1>{heading}</h1>
 		<ul>{
@@ -14,3 +14,4 @@ export default ({ heading, items }) =>
 		}</ul>
 	</div>
 
+export default SongList

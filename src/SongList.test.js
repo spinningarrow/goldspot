@@ -1,9 +1,9 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import ShallowRenderer from 'react-test-renderer/shallow'
 
 import SongList from './SongList'
 
-jest.mock('./SongItem', () => 'SongItem')
+const renderer = new ShallowRenderer()
 
 const items = [
 	{
@@ -21,8 +21,6 @@ const items = [
 ]
 
 test('it renders a list of SongItems', () => {
-	const tree = renderer.create(<SongList heading="Some Songs" items={items} />)
-		.toJSON()
-
+	const tree = renderer.render(<SongList heading="Some Songs" items={items} />)
 	expect(tree).toMatchSnapshot()
 })
