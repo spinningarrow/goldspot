@@ -1,7 +1,7 @@
 import React from 'react'
 import SongItem from './SongItem'
 
-const SongList = ({ heading, items }) =>
+const SongList = ({ heading, items = [] }) =>
 	<div className="song-list">
 		<h1>{heading}</h1>
 		<ul>{

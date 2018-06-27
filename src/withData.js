@@ -1,21 +1,21 @@
 import React from 'react'
 
-const withData = (WrappedComponent, url, transformData) => {
+const withData = (WrappedComponent, transformData, ...urls) => {
 	return class extends React.Component {
 		constructor() {
 			super()
 
 			this.state = {
-				items: []
+				items: undefined
 			}
 		}
 
 		async componentDidMount() {
-			const response = await fetch(url)
-			const json = await response.json()
+			const responses = await Promise.all(urls.map(url => fetch(url)))
+			const jsons = await Promise.all(responses.map(response => response.json()))
 
 			this.setState({
-				items: transformData(json)
+				items: transformData(...jsons)
 			})
 		}
 

@@ -5,8 +5,8 @@ import SongList from './SongList'
 import withData from './withData'
 import { mapData, mapRecentlyPlayedData } from './mappers'
 
-const RecentlyAddedSongList = withData(SongList, '/saved-tracks.json', mapData)
-const RecentlyPlayedSongList = withData(SongList, '/recently-played.json', mapRecentlyPlayedData)
+const RecentlyAddedSongList = withData(SongList, mapData, '/saved-tracks.json')
+const RecentlyPlayedSongList = withData(SongList, mapRecentlyPlayedData, '/recently-played.json')
 
 class App extends Component {
 	constructor() {
