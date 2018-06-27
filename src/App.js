@@ -6,8 +6,8 @@ import MultiSongList from './MultiSongList'
 import withData from './withData'
 import { mapData, mapRecentlyPlayedData, transformAudioFeatures } from './mappers'
 
-const RecentlyAddedSongList = withData(SongList, mapData, '/saved-tracks.json')
-const RecentlyPlayedSongList = withData(SongList, mapRecentlyPlayedData, '/recently-played.json')
+const RecentlyAddedSongList = withData(SongList, mapData, 'https://api.spotify.com/v1/me/tracks')
+const RecentlyPlayedSongList = withData(SongList, mapRecentlyPlayedData, 'https://api.spotify.com/v1/me/player/recently-played')
 const AudioFeaturesList = withData(MultiSongList, transformAudioFeatures, '/saved-tracks-audio-features.json', '/saved-tracks.json')
 
 class App extends Component {
