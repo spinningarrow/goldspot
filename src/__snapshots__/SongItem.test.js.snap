@@ -4,15 +4,19 @@ exports[`it displays the given details about the song item 1`] = `
 <li
   className="song-item"
 >
-  <img
-    alt="album art"
-    src="art.jpg"
-  />
   <a
     href="https://spotify/song"
     target="_blank"
   >
-    Dans L'sang
+    <img
+      alt="album art"
+      src="art.jpg"
+    />
+    <span
+      className="title"
+    >
+      Dans L'sang
+    </span>
   </a>
   <span
     className="artist"
