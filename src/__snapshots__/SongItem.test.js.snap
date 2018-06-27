@@ -14,5 +14,8 @@ exports[`it displays the given details about the song item 1`] = `
   >
     Dans L'sang
   </a>
+  <span
+    className="artist"
+  />
 </li>
 `;

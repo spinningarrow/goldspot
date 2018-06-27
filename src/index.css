@@ -71,9 +71,12 @@ main > * {
 	width: 32px;
 }
 
-.song-item span {
-	display: inline-block;
-	vertical-align: middle;
+.song-item .artist {
+	color: hsl(0, 0%, 60%);
+}
+
+.song-item .artist::before {
+	content: ' ';
 }
 
 .multi-song-list-items {

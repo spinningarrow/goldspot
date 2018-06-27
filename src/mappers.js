@@ -22,17 +22,9 @@ export const mapData = data => data.items.map(({
 	audioFeatures
 }))
 
-const mapRecentlyPlayed = items => items.map(({
-	albumArt,
-	title,
-	id,
-	url,
-	playedAt
-}) => ({
-	id: id + playedAt,
-	albumArt,
-	title,
-	url,
+const mapRecentlyPlayed = items => items.map(item => ({
+	...item,
+	id: item.id + item.playedAt,
 }))
 
 export const mapRecentlyPlayedData = compose(mapRecentlyPlayed, mapData)
