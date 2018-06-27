@@ -54,7 +54,11 @@ main > * {
 .song-item {
 	border-top: 1px solid hsl(0, 0%, 95%);
 	line-height: 2;
+	max-width: calc(100vw - 4rem);
+	overflow: hidden;
 	padding: 0.5rem 0;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .song-item:hover {
@@ -80,11 +84,13 @@ main > * {
 }
 
 .multi-song-list-items {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	text-transform: capitalize;
 	color: hsl(0, 0%, 65%);
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-transform: capitalize;
 }
 
 .multi-song-list-items .selected {
@@ -92,7 +98,6 @@ main > * {
 }
 
 .multi-song-list-items li {
-	display: inline-block;
 	margin-right: 1rem;
 	cursor: pointer;
 }
@@ -102,7 +107,6 @@ main > * {
 }
 
 .multi-song-list-items li::after {
-	display: inline-block;
 	content: '/';
 	color: hsl(0, 0%, 65%);
 	margin-left: 1rem;
@@ -110,4 +114,17 @@ main > * {
 
 .multi-song-list-items li:last-child::after {
 	content: '';
+}
+
+@media only screen and (max-width: 45rem) {
+	main {
+		flex-wrap: wrap;
+	}
+
+	main > * {
+		flex-basis: auto;
+		flex-grow: 1;
+		flex-shrink: 1;
+		margin-right: 0;
+	}
 }
