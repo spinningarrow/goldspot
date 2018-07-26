@@ -6,15 +6,33 @@ exports[`it renders without crashing 1`] = `
 >
   <Header />
   <main>
-    <WithData(SongList)
-      heading="Recently Added"
+    <DataFetcher
+      render={[Function]}
+      transformData={[Function]}
+      urls={
+        Array [
+          "https://api.spotify.com/v1/me/tracks",
+        ]
+      }
     />
-    <WithData(SongList)
-      heading="Recently Played"
+    <DataFetcher
+      render={[Function]}
+      transformData={[Function]}
+      urls={
+        Array [
+          "https://api.spotify.com/v1/me/player/recently-played",
+        ]
+      }
     />
-    <WithData(MultiSongList)
-      handleSelection={[Function]}
-      selectedSongList="energize"
+    <DataFetcher
+      render={[Function]}
+      transformData={[Function]}
+      urls={
+        Array [
+          "/saved-tracks-audio-features.json",
+          "/saved-tracks.json",
+        ]
+      }
     />
   </main>
 </div>

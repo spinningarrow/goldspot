@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import Header from './Header'
 import SongList from './SongList'
 import MultiSongList from './MultiSongList'
-import withData from './withData'
-import { mapData, mapRecentlyPlayedData, transformAudioFeatures } from './mappers'
-
-const RecentlyAddedSongList = withData(SongList, mapData, 'https://api.spotify.com/v1/me/tracks')
-const RecentlyPlayedSongList = withData(SongList, mapRecentlyPlayedData, 'https://api.spotify.com/v1/me/player/recently-played')
-const AudioFeaturesList = withData(MultiSongList, transformAudioFeatures, '/saved-tracks-audio-features.json', '/saved-tracks.json')
+import DataFetcher from './DataFetcher'
+import {
+	mapData,
+	mapRecentlyPlayedData,
+	transformAudioFeatures,
+} from './mappers'
 
 class App extends Component {
 	constructor() {
@@ -18,21 +18,54 @@ class App extends Component {
 		}
 	}
 
-	handleSelection = (key) => {
+	handleSelection = key => {
 		this.setState({
-			audioFeaturesSongList: key
+			audioFeaturesSongList: key,
 		})
 	}
 
 	render() {
-		return <div className="app">
-			<Header />
-			<main>
-				<RecentlyAddedSongList heading="Recently Added" />
-				<RecentlyPlayedSongList heading="Recently Played" />
-				<AudioFeaturesList selectedSongList={this.state.audioFeaturesSongList} handleSelection={this.handleSelection} />
-			</main>
-		</div>
+		return (
+			<div className="app">
+				<Header />
+				<main>
+					<DataFetcher
+						urls={['https://api.spotify.com/v1/me/tracks']}
+						transformData={mapData}
+						render={({ items }) => (
+							<SongList items={items} heading="Recently Added" />
+						)}
+					/>
+
+					<DataFetcher
+						urls={[
+							'https://api.spotify.com/v1/me/player/recently-played',
+						]}
+						transformData={mapRecentlyPlayedData}
+						render={({ items }) => (
+							<SongList heading="Recently Played" items={items} />
+						)}
+					/>
+
+					<DataFetcher
+						urls={[
+							'/saved-tracks-audio-features.json',
+							'/saved-tracks.json',
+						]}
+						transformData={transformAudioFeatures}
+						render={({ items }) => (
+							<MultiSongList
+								selectedSongList={
+									this.state.audioFeaturesSongList
+								}
+								handleSelection={this.handleSelection}
+								items={items}
+							/>
+						)}
+					/>
+				</main>
+			</div>
+		)
 	}
 }
 
