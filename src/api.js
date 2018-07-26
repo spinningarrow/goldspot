@@ -6,11 +6,14 @@ import {
 import { getSpotifyToken } from './utils'
 
 export const getTracks = async () => {
-	const tracksResponse = await fetch('https://api.spotify.com/v1/me/tracks', {
-		headers: {
-			Authorization: `Bearer ${getSpotifyToken()}`,
-		},
-	})
+	const tracksResponse = await fetch(
+		'https://api.spotify.com/v1/me/tracks?limit=50',
+		{
+			headers: {
+				Authorization: `Bearer ${getSpotifyToken()}`,
+			},
+		}
+	)
 	const tracks = await tracksResponse.json()
 
 	return mapData(tracks)
@@ -31,11 +34,14 @@ export const getRecentlyPlayed = async () => {
 }
 
 export const getAudioFeatures = async () => {
-	const tracksResponse = await fetch('https://api.spotify.com/v1/me/tracks', {
-		headers: {
-			Authorization: `Bearer ${getSpotifyToken()}`,
-		},
-	})
+	const tracksResponse = await fetch(
+		'https://api.spotify.com/v1/me/tracks?limit=50',
+		{
+			headers: {
+				Authorization: `Bearer ${getSpotifyToken()}`,
+			},
+		}
+	)
 	const tracks = await tracksResponse.json()
 
 	const ids = tracks.items.map(item => item.track.id).join(',')
