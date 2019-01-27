@@ -26,16 +26,16 @@ class App extends Component {
 				<Header />
 				<main>
 					<DataFetcher
-						data={getTracks}
+						data={getRecentlyPlayed}
 						render={({ items }) => (
-							<SongList items={items} heading="Recently Added" />
+							<SongList heading="Recently Played" items={items} />
 						)}
 					/>
 
 					<DataFetcher
-						data={getRecentlyPlayed}
+						data={getTracks}
 						render={({ items }) => (
-							<SongList heading="Recently Played" items={items} />
+							<SongList items={items} heading="Recently Added" />
 						)}
 					/>
 
