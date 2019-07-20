@@ -1,4 +1,4 @@
-import { compose, groupBy } from 'ramda'
+import { compose, groupBy, uniqWith } from 'ramda'
 
 export const mapData = data =>
 	data.items.map(
@@ -33,6 +33,7 @@ const mapRecentlyPlayed = items =>
 
 export const mapRecentlyPlayedData = compose(
 	mapRecentlyPlayed,
+	uniqWith(({ id: idA }, { id: idB }) => idA === idB),
 	mapData
 )
 
