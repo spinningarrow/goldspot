@@ -24,6 +24,7 @@ const App = () => {
 			{enabledFeatures.includes('Player') && (
 				<DataFetcher
 					data={getNowPlaying}
+					refetchInterval={5000}
 					render={({
 						items: { artist, trackName, isPlaying } = {},
 					}) => (

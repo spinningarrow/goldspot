@@ -4,6 +4,11 @@ exports[`it renders without crashing 1`] = `
 <div
   className="app"
 >
+  <DataFetcher
+    data={[Function]}
+    refetchInterval={5000}
+    render={[Function]}
+  />
   <Header
     secretAction={[Function]}
   />
