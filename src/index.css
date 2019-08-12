@@ -123,6 +123,17 @@ main > * {
 	content: '';
 }
 
+.player {
+	background: rgba(255, 255, 255, 0.99);
+	border-top: 1px solid #eee;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	position: fixed;
+	right: 0;
+	z-index: 1;
+}
+
 @media only screen and (max-width: 45rem) {
 	main {
 		flex-wrap: wrap;

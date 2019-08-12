@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 
-import Header from './Header'
-import SongList from './SongList'
-import MultiSongList from './MultiSongList'
 import DataFetcher from './DataFetcher'
-import { getAudioFeatures, getRecentlyPlayed, getTracks } from './api'
+import Header from './Header'
+import MultiSongList from './MultiSongList'
+import Player from './Player'
+import SongList from './SongList'
+import {
+	getAudioFeatures,
+	getNowPlaying,
+	getRecentlyPlayed,
+	getTracks,
+} from './api'
 
 class App extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			audioFeaturesSongList: 'energize',
 		}
@@ -23,6 +29,20 @@ class App extends Component {
 	render() {
 		return (
 			<div className="app">
+				{false && (
+					<DataFetcher
+						data={getNowPlaying}
+						render={({
+							items: { artist, trackName, isPlaying } = {},
+						}) => (
+							<Player
+								artist={artist}
+								trackName={trackName}
+								isPlaying={isPlaying}
+							/>
+						)}
+					/>
+				)}
 				<Header />
 				<main>
 					<DataFetcher
