@@ -28,7 +28,6 @@ export const mapData = data =>
 const mapRecentlyPlayed = items =>
 	items.map(item => ({
 		...item,
-		id: item.id + item.playedAt,
 	}))
 
 export const mapRecentlyPlayedData = compose(

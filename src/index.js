@@ -8,12 +8,13 @@ import registerServiceWorker from './registerServiceWorker'
 if (!getSpotifyToken()) {
 	const redirectUri = window.location.protocol + '//' + window.location.host
 	const scopes = [
-		'user-library-read',
 		'playlist-read-collaborative',
+		'streaming',
+		'user-follow-read',
+		'user-library-read',
 		'user-read-currently-playing',
 		'user-read-recently-played',
 		'user-top-read',
-		'user-follow-read',
 	].join('%20')
 	const clientId = 'e5f7ec54856e46e99b33e23b45a7f61c'
 	const spotifyTokenRequestURL = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&response_type=token&state=123`

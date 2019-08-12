@@ -6,6 +6,8 @@ exports[`it displays the given details about the song item 1`] = `
 >
   <a
     href="https://spotify/song"
+    onClick={[Function]}
+    rel="noopener noreferrer"
     target="_blank"
   >
     <img

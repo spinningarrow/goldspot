@@ -57,3 +57,17 @@ export const getAudioFeatures = async () => {
 	const audioFeatures = await audioFeaturesResponse.json()
 	return transformAudioFeatures(audioFeatures, tracks)
 }
+
+export const playTrack = id => event => {
+	event.preventDefault()
+
+	fetch('https://api.spotify.com/v1/me/player/play', {
+		method: 'PUT',
+		headers: {
+			Authorization: `Bearer ${getSpotifyToken()}`,
+		},
+		body: JSON.stringify({
+			uris: [`spotify:track:${id}`],
+		}),
+	})
+}

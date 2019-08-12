@@ -11,12 +11,14 @@ exports[`it renders a list of SongItems 1`] = `
     <SongItem
       albumArt="art1.jpg"
       artist="Artist Five"
+      id={1}
       title="The Best Song"
       url="https://the/best/song"
     />
     <SongItem
       albumArt="art2.jpg"
       artist="Arty"
+      id={2}
       title="Song #2"
       url="https://the/second/song"
     />
