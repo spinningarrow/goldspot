@@ -73,23 +73,27 @@ export const playTrack = id => event => {
 }
 
 export const getNowPlaying = async () => {
-	const response = await fetch(
-		'https://api.spotify.com/v1/me/player/currently-playing',
-		{
-			headers: {
-				Authorization: `Bearer ${getSpotifyToken()}`,
-			},
+	try {
+		const response = await fetch(
+			'https://api.spotify.com/v1/me/player/currently-playing',
+			{
+				headers: {
+					Authorization: `Bearer ${getSpotifyToken()}`,
+				},
+			}
+		)
+
+		const {
+			is_playing,
+			item: { artists, name },
+		} = await response.json()
+
+		return {
+			artist: artists && artists[0].name,
+			trackName: name,
+			isPlaying: is_playing,
 		}
-	)
-
-	const {
-		is_playing,
-		item: { artists, name },
-	} = await response.json()
-
-	return {
-		artist: artists && artists[0].name,
-		trackName: name,
-		isPlaying: is_playing,
+	} catch {
+		return {}
 	}
 }
