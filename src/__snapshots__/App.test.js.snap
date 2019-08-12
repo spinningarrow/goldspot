@@ -4,7 +4,9 @@ exports[`it renders without crashing 1`] = `
 <div
   className="app"
 >
-  <Header />
+  <Header
+    secretAction={[Function]}
+  />
   <main>
     <DataFetcher
       data={[Function]}

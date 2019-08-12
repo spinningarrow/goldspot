@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
 import DataFetcher from './DataFetcher'
 import Header from './Header'
@@ -12,69 +12,60 @@ import {
 	getTracks,
 } from './api'
 
-class App extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			audioFeaturesSongList: 'energize',
-		}
-	}
+const App = () => {
+	const [audioFeaturesSongList, setAudioFeaturesSongList] = useState(
+		'energize'
+	)
 
-	handleSelection = key => {
-		this.setState({
-			audioFeaturesSongList: key,
-		})
-	}
+	const [enabledFeatures, setEnabledFeatures] = useState([])
 
-	render() {
-		return (
-			<div className="app">
-				{false && (
-					<DataFetcher
-						data={getNowPlaying}
-						render={({
-							items: { artist, trackName, isPlaying } = {},
-						}) => (
-							<Player
-								artist={artist}
-								trackName={trackName}
-								isPlaying={isPlaying}
-							/>
-						)}
-					/>
-				)}
-				<Header />
-				<main>
-					<DataFetcher
-						data={getRecentlyPlayed}
-						render={({ items }) => (
-							<SongList heading="Recently Played" items={items} />
-						)}
-					/>
+	return (
+		<div className="app">
+			{enabledFeatures.includes('Player') && (
+				<DataFetcher
+					data={getNowPlaying}
+					render={({
+						items: { artist, trackName, isPlaying } = {},
+					}) => (
+						<Player
+							artist={artist}
+							trackName={trackName}
+							isPlaying={isPlaying}
+						/>
+					)}
+				/>
+			)}
 
-					<DataFetcher
-						data={getTracks}
-						render={({ items }) => (
-							<SongList items={items} heading="Recently Added" />
-						)}
-					/>
+			<Header secretAction={setEnabledFeatures} />
 
-					<DataFetcher
-						data={getAudioFeatures}
-						render={({ items }) => (
-							<MultiSongList
-								selectedSongList={
-									this.state.audioFeaturesSongList
-								}
-								handleSelection={this.handleSelection}
-								items={items}
-							/>
-						)}
-					/>
-				</main>
-			</div>
-		)
-	}
+			<main>
+				<DataFetcher
+					data={getRecentlyPlayed}
+					render={({ items }) => (
+						<SongList heading="Recently Played" items={items} />
+					)}
+				/>
+
+				<DataFetcher
+					data={getTracks}
+					render={({ items }) => (
+						<SongList items={items} heading="Recently Added" />
+					)}
+				/>
+
+				<DataFetcher
+					data={getAudioFeatures}
+					render={({ items }) => (
+						<MultiSongList
+							selectedSongList={audioFeaturesSongList}
+							handleSelection={setAudioFeaturesSongList}
+							items={items}
+						/>
+					)}
+				/>
+			</main>
+		</div>
+	)
 }
 
 export default App
