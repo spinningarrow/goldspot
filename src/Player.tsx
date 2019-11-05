@@ -7,7 +7,10 @@ const Player = ({ artist, trackName, isPlaying = false }) => {
 
 	return (
 		<div className="player">
-			{trackName} {artist} ({isPlaying ? 'playing' : 'paused'})
+			<span className="title">{trackName}</span>{' '}
+			<span className="artist">{artist}</span> ({isPlaying
+				? 'playing'
+				: 'paused'})
 		</div>
 	)
 }

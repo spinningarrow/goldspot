@@ -69,7 +69,7 @@ main > * {
 	width: 32px;
 }
 
-.song-item .artist {
+.artist {
 	color: hsl(0, 0%, 60%);
 }
 
