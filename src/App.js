@@ -21,21 +21,17 @@ const App = () => {
 
 	return (
 		<div className="app">
-			{enabledFeatures.includes('Player') && (
-				<DataFetcher
-					data={getNowPlaying}
-					refetchInterval={5000}
-					render={({
-						items: { artist, trackName, isPlaying } = {},
-					}) => (
-						<Player
-							artist={artist}
-							trackName={trackName}
-							isPlaying={isPlaying}
-						/>
-					)}
-				/>
-			)}
+			<DataFetcher
+				data={getNowPlaying}
+				refetchInterval={5000}
+				render={({ items: { artist, trackName, isPlaying } = {} }) => (
+					<Player
+						artist={artist}
+						trackName={trackName}
+						isPlaying={isPlaying}
+					/>
+				)}
+			/>
 
 			<Header secretAction={setEnabledFeatures} />
 
