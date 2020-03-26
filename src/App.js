@@ -6,7 +6,8 @@ import Header from './Header'
 import MultiSongList from './MultiSongList'
 import Player from './Player'
 import SongList from './SongList'
-import { getAudioFeatures, getRecentlyPlayed, getTracks } from './api'
+import RecentlyPlayed from './RecentlyPlayed'
+import { getAudioFeatures, getTracks } from './api'
 import { client } from './client'
 
 const App = () => {
@@ -19,17 +20,11 @@ const App = () => {
 	return (
 		<ApolloProvider client={client}>
 			<div className="app">
-
 				<Player />
 
 				<Header secretAction={setEnabledFeatures} />
 				<main>
-					<DataFetcher
-						data={getRecentlyPlayed}
-						render={({ items }) => (
-							<SongList heading="Recently Played" items={items} />
-						)}
-					/>
+					<RecentlyPlayed />
 
 					<DataFetcher
 						data={getTracks}
