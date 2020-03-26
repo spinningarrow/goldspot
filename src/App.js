@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
 
+import { ApolloProvider } from '@apollo/react-hooks'
 import DataFetcher from './DataFetcher'
 import Header from './Header'
 import MultiSongList from './MultiSongList'
 import Player from './Player'
 import SongList from './SongList'
-import {
-	getAudioFeatures,
-	getNowPlaying,
-	getRecentlyPlayed,
-	getTracks,
-} from './api'
+import { getAudioFeatures, getRecentlyPlayed, getTracks } from './api'
+import { client } from './client'
 
 const App = () => {
 	const [audioFeaturesSongList, setAudioFeaturesSongList] = useState(
@@ -20,48 +17,40 @@ const App = () => {
 	const [enabledFeatures, setEnabledFeatures] = useState([])
 
 	return (
-		<div className="app">
-			<DataFetcher
-				data={getNowPlaying}
-				refetchInterval={5000}
-				render={({ items: { artist, trackName, isPlaying } = {} }) => (
-					<Player
-						artist={artist}
-						trackName={trackName}
-						isPlaying={isPlaying}
+		<ApolloProvider client={client}>
+			<div className="app">
+
+				<Player />
+
+				<Header secretAction={setEnabledFeatures} />
+				<main>
+					<DataFetcher
+						data={getRecentlyPlayed}
+						render={({ items }) => (
+							<SongList heading="Recently Played" items={items} />
+						)}
 					/>
-				)}
-			/>
 
-			<Header secretAction={setEnabledFeatures} />
+					<DataFetcher
+						data={getTracks}
+						render={({ items }) => (
+							<SongList items={items} heading="Recently Added" />
+						)}
+					/>
 
-			<main>
-				<DataFetcher
-					data={getRecentlyPlayed}
-					render={({ items }) => (
-						<SongList heading="Recently Played" items={items} />
-					)}
-				/>
-
-				<DataFetcher
-					data={getTracks}
-					render={({ items }) => (
-						<SongList items={items} heading="Recently Added" />
-					)}
-				/>
-
-				<DataFetcher
-					data={getAudioFeatures}
-					render={({ items }) => (
-						<MultiSongList
-							selectedSongList={audioFeaturesSongList}
-							handleSelection={setAudioFeaturesSongList}
-							items={items}
-						/>
-					)}
-				/>
-			</main>
-		</div>
+					<DataFetcher
+						data={getAudioFeatures}
+						render={({ items }) => (
+							<MultiSongList
+								selectedSongList={audioFeaturesSongList}
+								handleSelection={setAudioFeaturesSongList}
+								items={items}
+							/>
+						)}
+					/>
+				</main>
+			</div>
+		</ApolloProvider>
 	)
 }
 
