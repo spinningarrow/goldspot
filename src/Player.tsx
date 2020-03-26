@@ -7,7 +7,7 @@ const Player = () => {
 		pollInterval: 5000,
 	})
 
-	if (!data) {
+	if (!data || !data.currentlyPlaying.isPlaying) {
 		return null
 	}
 
