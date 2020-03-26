@@ -16,19 +16,21 @@ const App = () => {
 	)
 
 	const [enabledFeatures, setEnabledFeatures] = useState([])
+	const [view, setView] = useState('played')
 
 	return (
 		<ApolloProvider client={client}>
 			<div className="app">
 				<Player />
 
-				<Header secretAction={setEnabledFeatures} />
+				<Header secretAction={setEnabledFeatures} setView={setView} />
+
 				<main>
-					<RecentlyPlayed />
+					{view === 'played' && <RecentlyPlayed />}
 
-					<RecentlyAdded />
+					{view === 'added' && <RecentlyAdded />}
 
-					<DataFetcher
+					{view === 'features' && <DataFetcher
 						data={getAudioFeatures}
 						render={({ items }) => (
 							<MultiSongList
@@ -37,7 +39,7 @@ const App = () => {
 								items={items}
 							/>
 						)}
-					/>
+					/>}
 				</main>
 			</div>
 		</ApolloProvider>
