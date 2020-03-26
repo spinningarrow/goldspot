@@ -5,9 +5,9 @@ import DataFetcher from './DataFetcher'
 import Header from './Header'
 import MultiSongList from './MultiSongList'
 import Player from './Player'
-import SongList from './SongList'
 import RecentlyPlayed from './RecentlyPlayed'
-import { getAudioFeatures, getTracks } from './api'
+import RecentlyAdded from './RecentlyAdded'
+import { getAudioFeatures } from './api'
 import { client } from './client'
 
 const App = () => {
@@ -26,12 +26,7 @@ const App = () => {
 				<main>
 					<RecentlyPlayed />
 
-					<DataFetcher
-						data={getTracks}
-						render={({ items }) => (
-							<SongList items={items} heading="Recently Added" />
-						)}
-					/>
+					<RecentlyAdded />
 
 					<DataFetcher
 						data={getAudioFeatures}

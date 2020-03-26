@@ -12,6 +12,14 @@ export const recentlyPlayedQuery = gql`
 	}
 `
 
+export const recentlyAddedQuery = gql`
+	query {
+		recentlyAdded @rest(type: "RecentlyAdded", path: "me/tracks?limit=50") {
+			items
+		}
+	}
+`
+
 export const currentlyPlayingQuery = gql`
 	query {
 		currentlyPlaying
