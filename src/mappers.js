@@ -1,6 +1,6 @@
 import { compose, groupBy, uniqWith } from 'ramda'
 
-export const mapData = data =>
+export const mapData = (data) =>
 	data.items.map(
 		({
 			played_at: playedAt,
@@ -25,8 +25,8 @@ export const mapData = data =>
 		})
 	)
 
-const mapRecentlyPlayed = items =>
-	items.map(item => ({
+const mapRecentlyPlayed = (items) =>
+	items.map((item) => ({
 		...item,
 	}))
 

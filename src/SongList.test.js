@@ -23,6 +23,8 @@ const items = [
 ]
 
 test('it renders a list of SongItems', () => {
-	const tree = renderer.render(<SongList heading="Some Songs" items={items} />)
+	const tree = renderer.render(
+		<SongList heading="Some Songs" items={items} />
+	)
 	expect(tree).toMatchSnapshot()
 })

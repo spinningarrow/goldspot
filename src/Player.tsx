@@ -26,9 +26,8 @@ const Player = () => {
 	return (
 		<div className="player">
 			<span className="title">{trackName}</span>{' '}
-			<span className="artist">{artist}</span> ({isPlaying
-				? 'playing'
-				: 'paused'})
+			<span className="artist">{artist}</span> (
+			{isPlaying ? 'playing' : 'paused'})
 		</div>
 	)
 }

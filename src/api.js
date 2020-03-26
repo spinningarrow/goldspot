@@ -12,7 +12,7 @@ export const getAudioFeatures = async () => {
 	)
 	const tracks = await tracksResponse.json()
 
-	const ids = tracks.items.map(item => item.track.id).join(',')
+	const ids = tracks.items.map((item) => item.track.id).join(',')
 
 	const audioFeaturesResponse = await fetch(
 		`https://api.spotify.com/v1/audio-features?ids=${ids}`,
@@ -26,7 +26,7 @@ export const getAudioFeatures = async () => {
 	return transformAudioFeatures(audioFeatures, tracks)
 }
 
-export const playTrack = id => event => {
+export const playTrack = (id) => (event) => {
 	event.preventDefault()
 
 	fetch('https://api.spotify.com/v1/me/player/play', {

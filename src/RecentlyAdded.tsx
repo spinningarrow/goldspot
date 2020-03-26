@@ -10,7 +10,10 @@ const RecentlyAdded = () => {
 	)
 
 	return (
-		<SongList items={mapData(data.recentlyAdded)} heading="Recently Added" />
+		<SongList
+			items={mapData(data.recentlyAdded)}
+			heading="Recently Added"
+		/>
 	)
 }
 

@@ -5,7 +5,9 @@ const Header = ({ secretAction, setView }) => (
 		<h1
 			onClick={() => {
 				secretAction(
-					(prompt('Which features do you want to enable?') || '').split(',')
+					(
+						prompt('Which features do you want to enable?') || ''
+					).split(',')
 				)
 			}}
 		>

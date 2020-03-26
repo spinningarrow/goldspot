@@ -30,16 +30,18 @@ const App = () => {
 
 					{view === 'added' && <RecentlyAdded />}
 
-					{view === 'features' && <DataFetcher
-						data={getAudioFeatures}
-						render={({ items }) => (
-							<MultiSongList
-								selectedSongList={audioFeaturesSongList}
-								handleSelection={setAudioFeaturesSongList}
-								items={items}
-							/>
-						)}
-					/>}
+					{view === 'features' && (
+						<DataFetcher
+							data={getAudioFeatures}
+							render={({ items }) => (
+								<MultiSongList
+									selectedSongList={audioFeaturesSongList}
+									handleSelection={setAudioFeaturesSongList}
+									items={items}
+								/>
+							)}
+						/>
+					)}
 				</main>
 			</div>
 		</ApolloProvider>
