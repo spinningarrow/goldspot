@@ -1,4 +1,4 @@
-# Goldspot
+# Goldspot ![CI](https://github.com/spinningarrow/goldspot/workflows/CI/badge.svg)
 
 Spotify + ✨ = Goldspot
 
