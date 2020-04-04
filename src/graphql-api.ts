@@ -45,3 +45,9 @@ export const tracksQuery = gql`
 		}
 	}
 `
+
+export const currentViewQuery = gql`
+	query {
+		currentView @client
+	}
+`

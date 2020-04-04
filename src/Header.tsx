@@ -1,30 +1,45 @@
 import React from 'react'
+import { useApolloClient } from '@apollo/client'
 
-const Header = ({
-	secretAction = (_) => {},
-	setView = (_) => {},
-}) => (
-	<header>
-		<h1
-			onClick={() => {
-				secretAction(
-					(
-						prompt('Which features do you want to enable?') || ''
-					).split(',')
-				)
-			}}
-		>
-			<span>Gold</span>spot
-		</h1>
-		<nav>
-			<ul>
-				<li onClick={() => setView('played')}>Recently Played</li>
-				<li onClick={() => setView('added')}>Recently Added</li>
-				<li onClick={() => setView('library')}>Library</li>
-				<li onClick={() => setView('features')}>Features</li>
-			</ul>
-		</nav>
-	</header>
-)
+import { currentViewQuery } from './graphql-api'
+
+const Header = ({ secretAction = (_) => {}, setView = (_) => {} }) => {
+	const client = useApolloClient()
+	const setCurrentView = (currentView) => {
+		client.writeQuery({
+			query: currentViewQuery,
+			data: { currentView },
+		})
+	}
+
+	return (
+		<header>
+			<h1
+				onClick={() => {
+					secretAction(
+						(
+							prompt('Which features do you want to enable?') ||
+							''
+						).split(',')
+					)
+				}}
+			>
+				<span>Gold</span>spot
+			</h1>
+			<nav>
+				<ul>
+					<li onClick={() => setCurrentView('played')}>
+						Recently Played
+					</li>
+					<li onClick={() => setCurrentView('added')}>
+						Recently Added
+					</li>
+					<li onClick={() => setCurrentView('library')}>Library</li>
+					<li onClick={() => setCurrentView('features')}>Features</li>
+				</ul>
+			</nav>
+		</header>
+	)
+}
 
 export default Header

@@ -1,7 +1,7 @@
 import React from 'react'
 import SongList from './SongList'
 import { recentlyAddedQuery } from './graphql-api'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import { mapData } from './mappers'
 
 const RecentlyAdded = () => {

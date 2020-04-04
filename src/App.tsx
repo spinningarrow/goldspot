@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ApolloProvider } from '@apollo/react-hooks'
+import { useQuery, ApolloProvider } from '@apollo/client'
 
 import DataFetcher from './DataFetcher'
 import Header from './Header'
@@ -10,6 +10,9 @@ import RecentlyAdded from './RecentlyAdded'
 import RecentlyPlayed from './RecentlyPlayed'
 import { client } from './client'
 import { getAudioFeatures } from './api'
+import { currentViewQuery } from './graphql-api'
+
+client.writeQuery({ query: currentViewQuery, data: { currentView: 'played' } })
 
 const App = () => {
 	const [audioFeaturesSongList, setAudioFeaturesSongList] = useState(
@@ -17,23 +20,24 @@ const App = () => {
 	)
 
 	const [enabledFeatures, setEnabledFeatures] = useState([])
-	const [view, setView] = useState('library')
+	const { data } = useQuery(currentViewQuery, { client })
+	const { currentView } = data
 
 	return (
 		<ApolloProvider client={client}>
 			<div className="app">
 				<Player />
 
-				<Header secretAction={setEnabledFeatures} setView={setView} />
+				<Header secretAction={setEnabledFeatures} />
 
 				<main>
-					{view === 'played' && <RecentlyPlayed />}
+					{currentView === 'played' && <RecentlyPlayed />}
 
-					{view === 'added' && <RecentlyAdded />}
+					{currentView === 'added' && <RecentlyAdded />}
 
-					{view === 'library' && <Library />}
+					{currentView === 'library' && <Library />}
 
-					{view === 'features' && (
+					{currentView === 'features' && (
 						<DataFetcher
 							data={getAudioFeatures}
 							render={({ items }) => (
