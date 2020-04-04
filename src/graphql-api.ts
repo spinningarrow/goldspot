@@ -35,3 +35,13 @@ export const currentlyPlayingQuery = gql`
 		}
 	}
 `
+
+export const tracksQuery = gql`
+	query($limit: Int! = 50, $offset: Int) {
+		tracks(limit: $limit, offset: $offset)
+			@rest(type: "Tracks", path: "me/tracks?{args}") {
+			items
+			next
+		}
+	}
+`

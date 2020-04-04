@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-
 import { ApolloProvider } from '@apollo/react-hooks'
+
 import DataFetcher from './DataFetcher'
 import Header from './Header'
+import Library from './Library'
 import MultiSongList from './MultiSongList'
 import Player from './Player'
-import RecentlyPlayed from './RecentlyPlayed'
 import RecentlyAdded from './RecentlyAdded'
-import { getAudioFeatures } from './api'
+import RecentlyPlayed from './RecentlyPlayed'
 import { client } from './client'
+import { getAudioFeatures } from './api'
 
 const App = () => {
 	const [audioFeaturesSongList, setAudioFeaturesSongList] = useState(
@@ -16,7 +17,7 @@ const App = () => {
 	)
 
 	const [enabledFeatures, setEnabledFeatures] = useState([])
-	const [view, setView] = useState('played')
+	const [view, setView] = useState('library')
 
 	return (
 		<ApolloProvider client={client}>
@@ -29,6 +30,8 @@ const App = () => {
 					{view === 'played' && <RecentlyPlayed />}
 
 					{view === 'added' && <RecentlyAdded />}
+
+					{view === 'library' && <Library />}
 
 					{view === 'features' && (
 						<DataFetcher
